@@ -1,0 +1,164 @@
+/*==============================
+=            MIXINS            =
+==============================*/
+@use "sass:math";
+
+// Replace
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+// Converting Pixels to EM
+@function px2rem ( $input ) {
+  @return unquote(math.div(  $input , 16) + 'rem');
+}
+
+@function get-color( $color, $_colors : $colorMap ) {
+  @return map-get($_colors, $color);
+}
+
+// Rewriting Opacity Mixin
+@mixin opacity( $value  ) {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$value*100})";
+  -moz-opacity: $value;
+  -khtms-opacity: $value;
+  opacity: $value;
+}
+
+//Box Shadows
+@mixin box-shadow($shadow) {
+  -webkit-box-shadow: $shadow;
+  -moz-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+
+//Border Radius
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+}
+
+@mixin rotate($radius) {
+  -webkit-transform: rotate($radius);
+  -moz-transform: rotate($radius);
+  -ms-transform: rotate($radius);
+  -o-transform: rotate($radius);
+  transform: rotate($radius);
+}
+
+@mixin rotateY($radius) {
+  -webkit-transform: rotateY($radius);
+  -moz-transform: rotateY($radius);
+  -ms-transform: rotateY($radius);
+  -o-transform: rotateY($radius);
+  transform: rotateY($radius);
+}
+
+@mixin rotateX($radius) {
+  -webkit-transform: rotateX($radius);
+  -moz-transform: rotateX($radius);
+  -ms-transform: rotateX($radius);
+  -o-transform: rotateX($radius);
+  transform: rotateX($radius);
+}
+
+@mixin translate($x , $y) {
+  -webkit-transform: translate($x, $y);
+  -moz-transform: translate($x, $y);
+  -ms-transform: translate($x, $y);
+  -o-transform: translate($x, $y);
+  transform: translate($x, $y);
+}
+
+@mixin translateY($deg) {
+  -webkit-transform: translateY($deg);
+  -moz-transform: translateY($deg);
+  -ms-transform: translateY($deg);
+  -o-transform: translateY($deg);
+  transform: translateY($deg);
+}
+
+@mixin translateX($deg) {
+  -webkit-transform: translateX($deg);
+  -moz-transform: translateX($deg);
+  -ms-transform: translateX($deg);
+  -o-transform: translateX($deg);
+  transform: translateX($deg);
+}
+
+@mixin scale($deg) {
+  -webkit-transform: scale($deg);
+  -moz-transform: scale($deg);
+  -ms-transform: scale($deg);
+  -o-transform: scale($deg);
+  transform: scale($deg);
+}
+
+
+//Border
+@mixin border-all($width, $style, $color) {
+  border-width: $width;
+  border-style: $style;
+  border-color: $color;
+}
+
+// Animations
+@mixin animation( $value ) {
+  -webkit-animation: $value;
+  -moz-animation: $value;
+  -o-animation: $value;
+  animation: $value;
+}
+
+// Key Frames
+@mixin keyframes( $name ) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-o-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name}{
+    @content;
+  }
+}
+
+
+@mixin transition($transition...) {
+  transition: $transition;
+}
+
+// Placeholders
+@mixin input-placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+}
+
+// Calc Function
+@mixin calc( $property, $expression ) {
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}

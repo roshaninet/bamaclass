@@ -1,0 +1,57 @@
+@import "0_variables";
+@import "1_mixins";
+
+.share_inline {
+  text-align: center;
+  margin: 0 auto;
+
+  li {
+    display: inline-block;
+    padding: 10px;
+    margin: 5px;
+
+    i {
+      display: block;
+      font-size: 22px;
+
+      &.shWhatsapp {
+        color: get-color('whatsapp');
+      }
+
+      &.shTelegram {
+        color: get-color('blue');
+      }
+
+      &.shFacebook {
+        color: get-color('dark-blue');
+      }
+
+      &.shMail {
+        color: get-color('gr-5');
+      }
+
+    }
+
+    span {
+      display: block;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  }
+}
+
+.link_container {
+  position: relative;
+  direction: ltr;
+
+  button {
+    left: 0;
+    top: 0;
+    border-radius: 0;
+    padding: 6px 10px;
+  }
+
+  input {
+    padding-left: 70px;
+  }
+}
