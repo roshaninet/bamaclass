@@ -26,7 +26,6 @@ export default function RootLayout({children}) {
             <link rel="preload" href="/fonts/iransans/regular/IRANSansWebNum.woff2" as="font" type="font/woff2"
                   crossOrigin="anonymous"/>
             <base href="/"/>
-
         </head>
         <body>{children}</body>
         </html>
