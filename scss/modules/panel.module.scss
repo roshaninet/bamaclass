@@ -1,0 +1,175 @@
+@import "../base/0_variables";
+@import "../base/1_mixins";
+
+.userSmallImage {
+  width: 32px;
+  height: 32px;
+}
+
+.mainDashboard {
+  height: 100%;
+  position: relative;
+  min-height: 100vh;
+}
+
+.panelContainer {
+  width: 100%;
+  padding-top: 60px;
+  padding-right: 230px;
+  @media #{$b768} {
+    padding-right: 0;
+  }
+
+  .sideNav {
+    padding-top: 60px;
+    position: absolute;
+    right: 0;
+    background-color: get-color('white');
+    bottom: 0;
+    overflow: auto;
+    top: 0;
+    width: 230px;
+
+    @media #{$b768} {
+      padding-top: 0px;
+      transition: all ease 0.3s;
+      z-index: 10000;
+      right: -230px !important;
+
+      &.open {
+        right: 0px !important;
+      }
+    }
+  }
+
+  .closeNav {
+    background: transparent;
+    font-size: 22px;
+    padding: 15px;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  header {
+    background-color: get-color('gr-3');
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    right: 0;
+    height: 60px;
+    top: 0;
+  }
+}
+
+.subNavHead {
+  background-color: get-color('white');
+  position: absolute;
+  font-size: 15px !important;
+  left: 0;
+  top: 100%;
+  width: 200px;
+  z-index: 100;
+
+}
+
+.backDrop {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  bottom: 0;
+}
+
+.asideContainer {
+  .menu {
+    border-right: 5px solid get-color('white');
+    color: get-color('black');
+    border-right: 5px solid transparent;
+  }
+
+  .active {
+    font-weight: bold;
+    border-right: 5px solid get-color('secondary');
+    color: get-color('secondary');
+  }
+}
+
+.slideImageContainer {
+  width: 100%;
+  height: 150px;
+
+  img {
+    background: get-color('gr-3');
+    height: 100% !important;
+  }
+}
+
+.videoImageContainer {
+  width: 100%;
+  height: 120px;
+
+  img {
+    background: get-color('gr-3');
+    height: 100% !important;
+  }
+}
+
+.asideImage {
+  img {
+    width: 80px;
+    height: 80px !important;
+  }
+}
+
+.filterContainer {
+  position: relative;
+
+  .btnClose {
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    left: -10px;
+    top: -10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.absButton {
+  position: fixed;
+  width: auto;
+  left: 5px;
+  bottom: 15px;
+}
+
+
+.addButton {
+  font-size: 35px;
+  display: flex;
+  border: 0;
+  border-radius: 50%;
+  background: get-color('primary');
+  color: get-color('white');
+  padding: 10px;
+  transition: all ease 0.2s;
+
+  &:hover {
+    color: get-color('gr-2');
+  }
+}
+
+.curseImageContainer {
+  width: 180px;
+  height: 130px;
+}
+
+
+.categoryImageContainer {
+  width: 90px;
+  height: 90px;
+}

@@ -1,0 +1,38 @@
+@import "../base/0_variables";
+@import "../base/1_mixins";
+
+.alertModal {
+  .success {
+    color: get-color('green');
+  }
+
+  .error {
+    color: get-color('red');
+  }
+
+  .info,
+  .warning {
+    color: get-color('yellow');
+  }
+
+  .modalHeader {
+    padding: 20px 0 0 0;
+    text-align: center;
+
+    i {
+      margin: 0 auto;
+      font-size: 22px;
+      padding: 5px;
+      width: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 54px;
+      border-radius: 50%;
+      border: 1px solid;
+    }
+
+
+  }
+
+}
