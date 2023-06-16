@@ -22,7 +22,7 @@ const SoonPage = () => {
                 </div>
 
                 <div className='w-100 text-center my-3'>
-                    <h1 className='font-18 fw-bold my-3'>پرلایک |  پلتفرم آموزش الکترونیکی ترکیبی (EBL)</h1>
+                    <h1 className='font-18 fw-bold my-3'>{AboutData.title} | بزرگترین پلتفرم آموزش آنلاین درسی</h1>
                 </div>
 
                 <div className='col-12 col-md-9 mx-auto'>
