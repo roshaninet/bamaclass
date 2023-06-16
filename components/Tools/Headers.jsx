@@ -1,11 +1,12 @@
 import Head from "next/head";
 import PropTypes from "prop-types";
 import React from "react";
+import AboutData from "@/lib/Data/AboutData";
 
 const Headers = ({seo}) => {
     return (
         <Head>
-            <title>{`${seo.title !== "پرلایک" ? seo.title + " | " : ''} پرلایک `}</title>
+            <title>{`${seo.title !== AboutData.title ? seo.title + " | " : ''} ${AboutData.title} `}</title>
             <meta property="og:title" content={seo.title}/>
             {
                 seo.hasOwnProperty('seo') && seo.seo ?

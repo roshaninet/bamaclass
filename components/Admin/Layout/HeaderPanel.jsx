@@ -9,6 +9,7 @@ import Link from "next/link";
 import ImageElement from "@/components/Tools/ImageElement";
 import Logo from "@/public/img/logo/logo-dark.png";
 import {ConfirmDialog} from "@/components/Tools/ConfirmDialog";
+import {toast} from "react-toastify";
 
 const HeaderPanel = ({user, signOut, toggleNav}) => {
     const [showProfile, setShowProfile] = useState(false);
@@ -33,6 +34,15 @@ const HeaderPanel = ({user, signOut, toggleNav}) => {
         }
     }
 
+    const clearCache = async () => {
+        if (await ConfirmDialog('پاکسازی کش انجام شود ؟')) {
+            const res = await Requests.deleteData('admin/redis', {})
+            if (res.success) {
+                toast("حذف با موفقیت انجام شد.")
+            }
+        }
+    }
+
     return (
         <header className='container-fluid shadow'>
             <div className='row h-100'>
@@ -47,6 +57,11 @@ const HeaderPanel = ({user, signOut, toggleNav}) => {
                     <Link href={'/'}>
                         <ImageElement title='Static title' image={Logo} width={150} height={40}/>
                     </Link>
+                </div>
+                <div className='col-auto align-self-center ps-1 pe-0 position-relative'>
+                    <button className='btn btn-sm btn-danger' onClick={clearCache}>
+                        <i className={`${icons.shClean} font-20`} />
+                    </button>
                 </div>
                 <div className='col-auto align-self-center ps-1 pe-0 position-relative' ref={wrapperRef1}>
                     <button className={`btn border-0 ${globals.btnIconOnly}`} aria-label='حساب کاربری'

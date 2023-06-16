@@ -51,7 +51,7 @@ const CategoryCard = ({loader, item, edit, remove}) => {
                         <ImageElement image={item.icon || '/img/placeholder1.png'}
                                       title={item.title}
                                       className='w-100 h-100' width={128}
-                                      height={128} url={!!item.icon} objectFit={'contain'}/>
+                                      height={128} url={!!item.icon} objectFit={'cover'}/>
                     </div>
                 </div>
                 <div className='col align-self-center'>
