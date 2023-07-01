@@ -15,11 +15,7 @@ class VideoForm extends BaseForm {
     constructor(props) {
         super(props);
         const data = {
-            episodeId: props.router.query?.episodeId,
-            videoType: '',
-            process: 0,
-            videoPath: '',
-            active: true
+            episodeId: props.router.query?.episodeId, videoType: 1, process: 0, videoPath: '', active: true
         }
 
         this.state.standAlone = true;
@@ -27,8 +23,7 @@ class VideoForm extends BaseForm {
             episodeId: props.router.query?.episodeId
         } : null
         this.state.formData = true;
-        this.state.files = ['file', 'video'];
-        this.state.file = null;
+        this.state.files = ['video'];
         this.state.video = null;
 
         this.state.path = 'videos';
@@ -55,8 +50,7 @@ class VideoForm extends BaseForm {
 
                 let currents = [];
                 const res = await Requests.getData('admin/videos/initial', {
-                    fileName: file.name,
-                    fileSize: file.size
+                    fileName: file.name, fileSize: file.size
                 });
 
                 if (res.success) {
@@ -66,7 +60,6 @@ class VideoForm extends BaseForm {
                 uploadedChunks = currents.length;
                 for (let chunkIndex = 0; chunkIndex < totalChunks; chunkIndex++) {
                     if (currents.indexOf(chunkIndex) > -1) {
-                        console.log("yes");
                         // uploadedChunks++;
                     } else {
                         const start = chunkIndex * chunkSize;
@@ -95,7 +88,6 @@ class VideoForm extends BaseForm {
                         }
                     }
 
-                    console.log(uploadedChunks, totalChunks, Math.ceil((uploadedChunks * 100) / totalChunks));
                     this.setState({
                         process: Math.ceil((uploadedChunks * 100) / totalChunks)
                     })
@@ -150,29 +142,16 @@ class VideoForm extends BaseForm {
     }
 
     render() {
-        return (
-            <ContainerContent title={'ویدیو'}>
+        return (<ContainerContent title={'ویدیو'}>
                 <ParentForm validated={this.state.validated} loader={this.state.loader}
                             handleSubmit={this.handleSubmit}>
-                    <div className='col-12 col-md-7 my-3'>
-                        <CustomControl
-                            pattern="image"
-                            className={`custom-input col-12`}
-                            id='file'
-                            type='image'
-                            value={this.state.file || this.props.editItem?.image}
-                            title='تصویر کاور (1080  * 1980)'
-                            onChange={(id, file) => this.setState({file: file})}
-                            isRequired={true}
-                        />
-                    </div>
 
 
                     <CustomControl
                         type='select'
                         id='videoType'
                         title='نوع ویدیو'
-                        options={{'': '', 1: "لینک ویدیو", 2: "پرلایک"}}
+                        options={{'': '', 1: "لینک ویدیو"}}
                         value={this.state.data.videoType}
                         className={`custom-input col-12 col-md-6`}
                         onChange={this.changeFormData}
@@ -192,24 +171,22 @@ class VideoForm extends BaseForm {
                         isRequired={true}
                     />
 
-                    {
-                        parseInt(this.state.data.videoType) === 1 ? <CustomControl
-                            type='text'
-                            id='videoPath'
-                            title='لینک ویدیو'
-                            value={this.state.data.videoPath}
-                            className={`custom-input col-12`}
-                            onChange={this.changeFormData}
-                            isRequired={true}
-                        /> : <div className='col-12'>
-                            <span className='font-13 d-block mb-1'>باگزاری ویدیو:</span>
-                            <VideoUpload
-                                file={this.state.video}
-                                process={this.state.process}
-                                setFile={(file) => this.setState({video: file})}
-                            />
-                        </div>
-                    }
+                    {parseInt(this.state.data.videoType) !== 2 ? <CustomControl
+                        type='text'
+                        id='videoPath'
+                        title='لینک ویدیو'
+                        value={this.state.data.videoPath}
+                        className={`custom-input col-12`}
+                        onChange={this.changeFormData}
+                        isRequired={true}
+                    /> : <div className='col-12'>
+                        <span className='font-13 d-block mb-1'>باگزاری ویدیو:</span>
+                        <VideoUpload
+                            file={this.state.video}
+                            process={this.state.process}
+                            setFile={(file) => this.setState({video: file})}
+                        />
+                    </div>}
 
 
                 </ParentForm>
@@ -219,8 +196,7 @@ class VideoForm extends BaseForm {
 }
 
 VideoForm.propTypes = {
-    editItem: PropTypes.any,
-    onDone: PropTypes.func,
+    editItem: PropTypes.any, onDone: PropTypes.func,
 }
 
 export default withRouter(VideoForm);
