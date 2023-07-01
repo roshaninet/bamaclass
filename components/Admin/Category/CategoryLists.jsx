@@ -86,7 +86,7 @@ class CategoryLists extends BaseClass {
                             {
                                 this.props.results && this.props.results.items.map((item, i) => {
                                     return (
-                                        <div key={`g-${i}`} className='col-12 col-md-4 mb-3'>
+                                        <div key={`g-${i}`} className='col-12 col-md-6 mb-3'>
                                             <CategoryCard
                                                 loader={this.state.removeLoader === item.id}
                                                 remove={() => this.remove(item)}
